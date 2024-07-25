@@ -28,9 +28,7 @@ resource "azurerm_linux_virtual_machine" "os_linux_instance" {
   }
 
 
-  provisioner "local-exec" {
-    command = "echo ${azurerm_public_ip.public-ip.ip_address} >> /Windows/System32/drivers/etc/"
-  }
+
 
   depends_on = [
     tls_private_key.linux_key
@@ -43,7 +41,7 @@ resource "tls_private_key" "linux_key" {
 }
 
 resource "local_file" "linuxkey" {
-  filename = "c:/Users/fmasm/OneDrive/Desktop/Training/Final assignment/item1/ansible/linuxkey.pem"
+  filename = "/home/adminuser/linuxkey.pem"
   content  = tls_private_key.linux_key.private_key_pem
 
 
