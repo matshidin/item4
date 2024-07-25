@@ -1,7 +1,7 @@
 
 resource "azurerm_linux_virtual_machine" "os_linux_instance" {
   name                = "${var.prefix}-linux-vm"
-  resource_group_name = azurerm_resource_group.demo.name
+  resource_group_name = azurerm_resource_group.item4.name
   location            = var.location
   size                = "Standard_B1s"
   admin_username      = "adminuser"
@@ -53,12 +53,12 @@ resource "azurerm_virtual_network" "demo" {
   name                = "${var.prefix}-linux-network"
   address_space       = ["10.0.0.0/16"]
   location            = var.location
-  resource_group_name = azurerm_resource_group.demo.name
+  resource_group_name = azurerm_resource_group.item4.name
 }
 
 resource "azurerm_public_ip" "public-ip" {
   name                = "PublicIp1"
-  resource_group_name = azurerm_resource_group.demo.name
+  resource_group_name = azurerm_resource_group.item4.name
   location            = var.location
   allocation_method   = "Static"
 
@@ -66,7 +66,7 @@ resource "azurerm_public_ip" "public-ip" {
 
 resource "azurerm_subnet" "demo-internal-1" {
   name                 = "${var.prefix}-linux-internal-1"
-  resource_group_name  = azurerm_resource_group.demo.name
+  resource_group_name  = azurerm_resource_group.item4.name
   virtual_network_name = azurerm_virtual_network.demo.name
   address_prefixes     = ["10.0.2.0/24"]
 }
@@ -74,7 +74,7 @@ resource "azurerm_subnet" "demo-internal-1" {
 resource "azurerm_network_interface" "demo-instance" {
   name                = "${var.prefix}-linux-instance1"
   location            = var.location
-  resource_group_name = azurerm_resource_group.demo.name
+  resource_group_name = azurerm_resource_group.item4.name
 
   ip_configuration {
     name                          = "instance1"
