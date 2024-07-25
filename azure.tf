@@ -18,15 +18,15 @@ provider "azurerm" {
   #  tenant_id       = var.tenant_id
 }
 
-resource "azurerm_resource_group" "demo" {
-  name     = "final-lab-demo"
+resource "azurerm_resource_group" "item4" {
+  name     = "final-lab-item4"
   location = var.location
 }
 
 resource "azurerm_network_security_group" "allow-ssh" {
   name                = "${var.prefix}-allow-ssh"
   location            = var.location
-  resource_group_name = azurerm_resource_group.demo.name
+  resource_group_name = azurerm_resource_group.item4.name
 
   security_rule {
     name                       = "SSH"
