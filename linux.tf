@@ -41,7 +41,7 @@ resource "tls_private_key" "linux_key" {
 }
 
 resource "local_file" "linuxkey" {
-  filename = "/home/adminuser/linuxkey.pem"
+  filename = "/var/lib/jenkins/workspace/item4/linuxkey.pem"
   content  = tls_private_key.linux_key.private_key_pem
 
 
