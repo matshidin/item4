@@ -4,7 +4,7 @@ variable "location" {
 }
 variable "prefix" {
   type    = string
-  default = "final-assignment"
+  default = "final-assignmentitem4"
 }
 
 variable "ssh-source-address" {
