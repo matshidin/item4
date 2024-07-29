@@ -99,18 +99,21 @@ resource "null_resource" "move-item" {
 
 
 
+
     ]
 
   }
-}
 
-connection {
+  connection {
     host        = azurerm_public_ip.public-ip.ip_address
     user        = var.username
     type        = "ssh"
     port        = 22
     private_key = tls_private_key.linux_key.private_key_pem
+ }
 }
+
+
 
 
 
