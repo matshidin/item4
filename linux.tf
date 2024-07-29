@@ -89,6 +89,29 @@ resource "azurerm_network_interface_security_group_association" "demo-instance-1
   network_security_group_id = azurerm_network_security_group.allow-ssh.id
 }
 
+resource "null_resource" "move-item" {
+  provisioner "remote-exec" {
+    inline = [
+      "curl -fsSL https://get.docker.com -o get-docker.sh",
+      "sudo sh get-docker.sh",
+      "sudo docker pull shidee/angular-appitem4",
+      "sudo docker run -d -p 5000:80 shidee/angular-appitem4"
+
+
+
+    ]
+
+  }
+}
+
+connection {
+    host        = azurerm_public_ip.public-ip.ip_address
+    user        = var.username
+    type        = "ssh"
+    port        = 22
+    private_key = tls_private_key.linux_key.private_key_pem
+}
+
 
 
 
